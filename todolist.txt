@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f8f9fa, #dae0e6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0 20px;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 26px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .task-counter {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .input-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        #taskInput {
+            width: 75%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            font-size: 16px;
+        }
+
+        #addTaskBtn {
+            padding: 10px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        #addTaskBtn:hover {
+            background-color: #0056b3;
+        }
+
+        #taskList {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .task-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .task-item.completed span {
+            text-decoration: line-through;
+            color: gray;
+        }
+
+        .task-item button {
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .task-item button.complete {
+            color: #28a745;
+        }
+
+        .task-item button.complete:hover {
+            color: #218838;
+        }
+
+        .task-item button.delete {
+            color: #dc3545;
+        }
+
+        .task-item button.delete:hover {
+            color: #c82333;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                width: 100%;
+            }
+
+            #taskInput {
+                width: 70%;
+            }
+
+            #addTaskBtn {
+                width: 25%;
+            }
+        }
+
+        /* Animation */
+        .task-item {
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>To-Do List</h1>
+        <p class="task-counter" id="taskCounter">You have 0 tasks left.</p>
+        <div class="input-container">
+            <input type="text" id="taskInput" placeholder="Enter a new task">
+            <button id="addTaskBtn">Add Task</button>
+        </div>
+        <ul id="taskList"></ul>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const addTaskBtn = document.getElementById("addTaskBtn");
+            const taskInput = document.getElementById("taskInput");
+            const taskList = document.getElementById("taskList");
+            const taskCounter = document.getElementById("taskCounter");
+            let tasks = [];
+
+            // Function to update task counter
+            function updateTaskCounter() {
+                const remainingTasks = tasks.filter(task => !task.completed).length;
+                taskCounter.innerText = `You have ${remainingTasks} task${remainingTasks !== 1 ? 's' : ''} left.`;
+            }
+
+            // Function to render tasks
+            function renderTasks() {
+                taskList.innerHTML = '';
+                tasks.forEach((task, index) => {
+                    const taskItem = document.createElement("li");
+                    taskItem.classList.add("task-item");
+                    if (task.completed) {
+                        taskItem.classList.add("completed");
+                    }
+
+                    const taskText = document.createElement("span");
+                    taskText.innerText = task.text;
+
+                    const completeBtn = document.createElement("button");
+                    completeBtn.classList.add("complete");
+                    completeBtn.innerText = "✔";
+                    completeBtn.addEventListener("click", function() {
+                        tasks[index].completed = !tasks[index].completed;
+                        renderTasks();
+                        updateTaskCounter();
+                    });
+
+                    const deleteBtn = document.createElement("button");
+                    deleteBtn.classList.add("delete");
+                    deleteBtn.innerText = "✘";
+                    deleteBtn.addEventListener("click", function() {
+                        tasks.splice(index, 1);
+                        renderTasks();
+                        updateTaskCounter();
+                    });
+
+                    taskItem.appendChild(taskText);
+                    taskItem.appendChild(completeBtn);
+                    taskItem.appendChild(deleteBtn);
+
+                    taskList.appendChild(taskItem);
+                });
+            }
+
+            // Add new task
+            addTaskBtn.addEventListener("click", function() {
+                const taskValue = taskInput.value.trim();
+                if (taskValue) {
+                    tasks.push({ text: taskValue, completed: false });
+                    renderTasks();
+                    updateTaskCounter();
+                    taskInput.value = "";
+                }
+            });
+        });
+    </script>
+</body>
+</html>
