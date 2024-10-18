@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Reshma K Ramesh - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            animation: fadeInDown 1s;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 20px;
+            font-size: 1.2rem;
+            animation: fadeIn 1s forwards;
+            opacity: 0;
+            animation-delay: 0.5s;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #feb47b;
+        }
+
+        section {
+            padding: 2rem;
+            margin: 2rem auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            max-width: 800px;
+            animation: fadeInUp 1s;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+
+        section h2 {
+            margin-bottom: 1rem;
+            color: #ff7e5f;
+            text-align: center;
+        }
+
+        ul {
+            list-style-type: square;
+            margin-left: 20px;
+        }
+
+        .project {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border-left: 4px solid #feb47b;
+            background-color: #f9f9f9;
+            transition: transform 0.3s;
+        }
+
+        .project:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+
+        a {
+            color: #1a73e8;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            nav ul li {
+                margin: 0 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Hi, I'm Reshma K Ramesh</h1>
+        <nav>
+            <ul>
+                <li><a href="#about">About Me</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#Academicprojects">Academic Projects</a></li>
+                <li><a href="#Experience">Experience</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="intro">
+        <h2>Welcome to My Portfolio</h2>
+        <p><center>Software Developer | Web Development Intern</center></p>
+    </section>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <p>I am a Post Graduate in Computer Application  and completed my <strong>MCA</strong> from <strong>NCERC, Pambady</strong>. I have interned at <strong>Cognifyz Technologies</strong> and <strong>CodXo</strong>, gaining experience in web and software development.</p>
+    </section>
+
+    <section id="contact">
+        <h2>Contact</h2>
+        <p>Email: <a href="mailto:reshmakaippullyramesh@gmail.com">reshmakaippullyramesh@gmail.com</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/reshma-k-ramesh-4aa69922" target="_blank">Reshma K Ramesh</a></p>
+        <p>GitHub: <a href="https://github.com/ReshmaKRamesh" target="_blank">GitHub Profile</a></p>
+    </section>
+
+    <section id="skills">
+        <h2>Skills</h2>
+        <ul>
+            <li>C</li>
+            <li>C++</li>
+            <li>Python</li>
+            <li>HTML5</li>
+            <li>CSS3</li>
+            <li>JavaScript</li>
+            <li>Java</li>
+        </ul>
+    </section>
+
+    <section id="Academic Projects">
+        <h2>Academic Projects</h2>
+        <div class="project">
+            <h3>Customizable AI Chatbot</h3>
+            <p>A flexible AI-powered chatbot platform for customer support and internal communication. (Python, Django, Flutter)</p>
+        </div>
+        <div class="project">
+            <h3>Interview Preparation App</h3>
+            <p>A mobile application designed to help job seekers prepare for interviews. (XML, Django, Python)</p>
+        </div></section>
+
+        <section id="Experience">
+            <h2>Experience</h2>
+        <div class="Experience"></div>
+            <h3>1.Software Development Intern(Sept 2024-Oct 2024)</h3><br>
+            <p>Tasks:</p><br>
+            <p> <ul><ol>Developed a text-based game using conditional
+                 statements.</ol>
+                <ol>Created number patterns through loop structures.</ol>
+                <ol>Built a console application for CRUD operations on a task
+                list.</ol>
+                <ol>Implemented a temperature converter for Fahrenheit and
+                Celsius.</ol>
+                <ol>Added file I/O for persistent task storage in the CRUD
+                application.</ol></ul>
+                </p>
+                <br><br>
+            <h3>2.Web Development Intern(Oct 2024-Nov 2024)</h3><br>
+            <p>Tasks:</p><br>
+            <p> <ul><ol>Develop a To-Do List application to manage tasks
+                effectively.</ol>
+                <ol>Create a Tribute Page showcasing a significant figure or
+                event.</ol>
+                <ol>Design a Portfolio Website to display personal projects
+                and skills.</ol>
+                <ol>Build an Expense Tracker to help users manage their
+                finances.</ol>
+                <ol>Develop a Weather App to provide real-time weather
+                updates.</ol></ul>
+                </p>
+        </div>
+        
+    </section>
+
+
+    <footer>
+        <p>&copy; 2024 Reshma K Ramesh. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // JavaScript functionality can be added here, such as interactivity, animations, or form validation
+        console.log('Portfolio website loaded.');
+    </script>
+</body>
+</html>
+

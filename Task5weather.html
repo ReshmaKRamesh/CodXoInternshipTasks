@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #74ebd5, #ACB6E5);
+            text-align: center;
+            padding: 50px;
+        }
+
+        h1 {
+            color: white;
+            text-shadow: 2px 2px 4px #000000;
+        }
+
+        .weather-app {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            padding: 30px;
+            width: 350px;
+            margin: auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        input[type="text"] {
+            width: calc(100% - 24px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 2px solid #007bff;
+            border-radius: 5px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus {
+            border-color: #0056b3;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .weather-info {
+            margin-top: 20px;
+        }
+
+        .weather-info p {
+            font-size: 18px;
+            color: #333;
+        }
+
+        .temperature {
+            font-size: 48px;
+            font-weight: bold;
+            color: #ff5722;
+        }
+
+        .description {
+            font-size: 24px;
+            color: #555;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Weather App</h1>
+
+    <div class="weather-app">
+        <input type="text" id="city" placeholder="Enter city name" required>
+        <button id="getWeather">Get Weather</button>
+
+        <div class="weather-info" id="weatherInfo">
+            <!-- Weather details will be displayed here -->
+        </div>
+
+        <div class="error-message" id="errorMessage"></div>
+    </div>
+
+    <script>
+        const apiKey = '495d52b7bd5cc5d06fedd71220a64c53'; // Replace this with your OpenWeatherMap API key
+        const weatherInfo = document.getElementById('weatherInfo');
+        const errorMessage = document.getElementById('errorMessage');
+
+        document.getElementById('getWeather').addEventListener('click', () => {
+            const city = document.getElementById('city').value;
+            if (city) {
+                getWeather(city);
+            } else {
+                errorMessage.textContent = 'Please enter a city name.';
+                weatherInfo.innerHTML = '';
+            }
+        });
+
+        function getWeather(city) {
+            const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('City not found');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    displayWeather(data);
+                    errorMessage.textContent = '';
+                })
+                .catch(error => {
+                    errorMessage.textContent = 'City not found. Please try again.';
+                    weatherInfo.innerHTML = '';
+                });
+        }
+
+        function displayWeather(data) {
+            const temperature = data.main.temp;
+            const description = data.weather[0].description;
+            const cityName = data.name;
+            const country = data.sys.country;
+
+            weatherInfo.innerHTML = `
+                <p class="temperature">${temperature}°C</p>
+                <p class="description">${description.charAt(0).toUpperCase() + description.slice(1)}</p>
+                <p>${cityName}, ${country}</p>
+            `;
+        }
+    </script>
+
+</body>
+</html>
